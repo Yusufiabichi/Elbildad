@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BackToTop from '../../../components/BackToTop';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
@@ -87,6 +89,35 @@ export default function HomePage() {
     }
   };
 
+  const fadeUp = {
+  initial: { opacity: 0, y: 60 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true, amount: 0.2 },
+};
+
+const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  transition: { duration: 0.8 },
+  viewport: { once: true },
+};
+
+const slideLeft = {
+  initial: { opacity: 0, x: -80 },
+  whileInView: { opacity: 1, x: 0 },
+  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true },
+};
+
+const slideRight = {
+  initial: { opacity: 0, x: 80 },
+  whileInView: { opacity: 1, x: 0 },
+  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true },
+};
+
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -105,7 +136,7 @@ export default function HomePage() {
             </div>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors cursor-pointer"
+              className="md:hidden w-10 h-10 flex items-center justify-center text-[#0A1F44] hover:text-[#D4AF37] transition-colors cursor-pointer"
             >
               <i className={`${mobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
             </button>
@@ -139,15 +170,23 @@ export default function HomePage() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full py-32">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              We Procure:<br />
-              <span className="text-white">Globally Connected,</span><br />
-              <span className="text-[#D4AF37]">Locally Delivered</span> 🇳🇬
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-xl font-light">
+              <motion.h1 {...fadeUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                We Procure:<br />
+                <span className="text-white">Globally Connected,</span><br />
+                <span className="text-[#D4AF37]">Locally Delivered..</span>
+              </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }} className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-xl font-light">
               Connecting Nigerian businesses to verified global suppliers. Physical presence. Real partnerships. Large-scale procurement you can trust.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-5">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }} className="flex flex-col sm:flex-row flex-wrap gap-5">
               <Link to="/contact" className="px-8 py-4 bg-[#0A1F44] text-white rounded-xl hover:bg-[#0A1F44]/90 transition-all text-base font-medium flex items-center justify-center space-x-2 whitespace-nowrap">
                 <span>Request Procurement</span>
                 <i className="ri-arrow-right-line"></i>
@@ -156,19 +195,19 @@ export default function HomePage() {
                 <i className="ri-map-pin-line"></i>
                 <span>Visit Our Office</span>
               </Link>
-            </div>
+            </motion.div>
           </div>
           
           
           <div className="mt-8 md:mt-0 md:absolute md:bottom-24 md:right-6 lg:right-12 grid grid-cols-2 gap-6 md:block md:text-right">
-            <div className="mb-0 md:mb-6">
+            <motion.div {...fadeUp} className="mb-0 md:mb-6">
               <div className="text-4xl md:text-5xl font-bold text-white">500+</div>
               <div className="text-sm text-white/80 mt-1">Global Suppliers</div>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div {...fadeUp} className="mb-0 md:mb-6">
               <div className="text-4xl md:text-5xl font-bold text-white">₦2B+</div>
               <div className="text-sm text-white/80 mt-1">Procurement Value</div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -176,16 +215,24 @@ export default function HomePage() {
       {/* Services Overview Section */}
       <section className="py-24 bg-[#F8F9FA]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
+          <motion.div {...fadeUp} className="mb-16">
             <span className="inline-block px-4 py-1.5 bg-[#0A1F44] text-white text-xs font-semibold rounded-full mb-4 whitespace-nowrap">WHAT WE DO</span>
             <h2 className="text-5xl font-bold text-[#0A1F44] leading-tight">
               Procurement Services<br />
               <span className="text-[#6B7280]">Built for Scale</span>
             </h2>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 1 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-global-line text-white text-2xl"></i>
               </div>
@@ -195,9 +242,17 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
+            </motion.div>
             
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 2 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-building-line text-white text-2xl"></i>
               </div>
@@ -207,9 +262,17 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
+            </motion.div>
             
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 3 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-search-line text-white text-2xl"></i>
               </div>
@@ -219,9 +282,17 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
-            
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 4 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-truck-line text-white text-2xl"></i>
               </div>
@@ -231,9 +302,17 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
+            </motion.div>
             
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 4 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-file-list-3-line text-white text-2xl"></i>
               </div>
@@ -243,9 +322,17 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
-            
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 4 * 0.12,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#0A1F44] rounded-full flex items-center justify-center mb-6">
                 <i className="ri-shield-check-line text-white text-2xl"></i>
               </div>
@@ -255,7 +342,7 @@ export default function HomePage() {
                 <span>Learn More</span>
                 <i className="ri-arrow-right-line"></i>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -266,14 +353,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="inline-block px-4 py-1.5 border-2 border-[#D4AF37] text-[#D4AF37] text-xs font-semibold rounded-full mb-6 whitespace-nowrap">WHY ELBILDAD</span>
-              <h2 className="text-5xl lg:text-6xl font-bold leading-tight mb-8">
+              <motion.h2 {...slideLeft} className="text-5xl lg:text-6xl font-bold leading-tight mb-8">
                 <span className="text-[#0A1F44]">Physical Presence.</span><br />
                 <span className="text-[#0A1F44]/70">Global Reach.</span><br />
                 <span className="text-[#D4AF37]">Real Trust.</span>
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
+              </motion.h2>
+              <motion.p {...fadeUp} className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
                 Unlike purely digital platforms, we operate from a physical office in Kano, Nigeria. Visit us, meet our team, and verify our operations. We believe trust in large-scale procurement comes from transparency, accountability, and face-to-face relationships.
-              </p>
+              </motion.p>
               <Link to="/contact" className="text-[#0A1F44] text-base font-medium underline hover:text-[#D4AF37] transition-colors flex items-center space-x-2 whitespace-nowrap">
                 <span>Visit Our Kano Office</span>
                 <i className="ri-arrow-right-line"></i>
@@ -282,31 +369,31 @@ export default function HomePage() {
             
             <div className="relative">
               <div className="absolute top-0 right-0 text-right z-10">
-                <div className="mb-8">
+                <motion.div {...fadeUp} className="mb-8">
                   <div className="text-6xl font-bold text-[#0A1F44]">15+</div>
                   <div className="text-sm text-gray-600 mt-2">Years Combined Experience</div>
-                </div>
-                <div>
-                  <div className="text-6xl font-bold text-[#0A1F44]">3</div>
-                  <div className="text-sm text-gray-600 mt-2">Continents Covered</div>
-                </div>
+                </motion.div>
+                <motion.div {...fadeUp} className="mb-8">
+                  {/* <div className="text-6xl font-bold text-[#0A1F44]">3</div>
+                  <div className="text-sm text-gray-600 mt-2">Continents Covered</div> */}
+                </motion.div>
               </div>
               
               <div className="relative mt-32">
-                <div className="relative z-0">
+                <motion.div {...slideRight} className="relative z-0">
                   <img 
-                    src="https://readdy.ai/api/search-image?query=Professional%20Nigerian%20business%20office%20interior%20with%20modern%20meeting%20room%2C%20corporate%20team%20discussion%20around%20conference%20table%2C%20diverse%20professionals%20in%20business%20attire%2C%20clean%20contemporary%20workspace%20with%20glass%20walls%20and%20natural%20lighting%2C%20credible%20corporate%20environment&width=600&height=750&seq=office-interior-001&orientation=portrait" 
+                    src="./business.png" 
                     alt="Office Interior" 
                     className="w-full h-[500px] object-cover rounded-3xl shadow-xl"
                   />
-                </div>
-                <div className="absolute -top-16 -left-16 z-10">
+                </motion.div>
+                <motion.div {...slideRight} className="absolute -top-16 -left-16 z-10">
                   <img 
-                    src="https://readdy.ai/api/search-image?query=Modern%20Nigerian%20corporate%20office%20building%20exterior%20with%20professional%20reception%20area%2C%20contemporary%20architecture%20with%20glass%20facade%2C%20welcoming%20business%20entrance%20with%20company%20signage%2C%20clean%20professional%20environment%2C%20daytime%20photography&width=380&height=380&seq=office-exterior-001&orientation=squarish" 
+                    src="./yatch.jpg" 
                     alt="Office Exterior" 
                     className="w-80 h-80 object-cover rounded-3xl shadow-2xl"
                   />
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -314,10 +401,14 @@ export default function HomePage() {
       </section>
 
       {/* Office Presence Highlight */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }} className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://readdy.ai/api/search-image?query=Panoramic%20view%20of%20modern%20Kano%20Nigeria%20cityscape%20with%20contemporary%20business%20district%2C%20urban%20development%20with%20commercial%20buildings%20and%20infrastructure%2C%20professional%20city%20photography%20at%20sunset%2C%20wide%20angle%20perspective%20showing%20economic%20growth%20and%20development&width=1920&height=1080&seq=kano-cityscape-001&orientation=landscape" 
+            src="./img2.jpeg" 
             alt="Kano Cityscape" 
             className="w-full h-full object-cover object-center"
           />
@@ -326,11 +417,11 @@ export default function HomePage() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end h-full">
-            <div className="mb-auto lg:mb-0">
-              <h2 className="text-6xl lg:text-7xl font-bold text-white tracking-wide">headquartered in kano</h2>
-            </div>
+            <motion.div {...slideLeft} className="mb-auto lg:mb-0">
+              <h2 className="text-6xl lg:text-7xl font-bold text-white tracking-wide">Visit our Kano office in Kano</h2>
+            </motion.div>
             
-            <div className="text-right max-w-md mt-auto">
+            <motion.div {...fadeUp} className="text-right max-w-md mt-auto">
               <p className="text-xl text-white font-light leading-relaxed mb-8">
                 Visit our physical office for procurement consultations<br />
                 and supplier verification meetings.
@@ -341,10 +432,10 @@ export default function HomePage() {
                   <i className="ri-arrow-right-line text-white text-xl"></i>
                 </div>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Choose Us */}
       <section className="py-24 bg-white relative overflow-hidden">
@@ -352,48 +443,64 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0A1F44]/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          <div className="text-center mb-20">
+          <motion.div {...fadeUp} className="text-center mb-20">
             <span className="inline-block px-4 py-1.5 bg-[#D4AF37] text-white text-xs font-semibold rounded-full mb-4 whitespace-nowrap">OUR ADVANTAGE</span>
             <h2 className="text-5xl font-bold text-[#0A1F44] leading-tight">
               Why Nigerian Businesses<br />
               <span className="text-[#0A1F44]/70">Trust Elbildad Services</span>
             </h2>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div className="text-center">
-              <div className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true }} className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
                 <i className="ri-shield-check-line text-[#0A1F44] text-7xl"></i>
-              </div>
-              <h3 className="text-xl font-bold text-[#0A1F44] mb-4">Verified Global Network</h3>
-              <p className="text-gray-600 leading-relaxed">Access to pre-vetted suppliers across Asia, Europe, and the Americas with proven track records.</p>
+              </motion.div>
+              <motion.h3 {...fadeUp} className="text-xl font-bold text-[#0A1F44] mb-4">Verified Global Network</motion.h3>
+              <motion.p {...fadeUp} className="text-gray-600 leading-relaxed">Access to pre-vetted suppliers across Asia, Europe, and the Americas with proven track records.</motion.p>
               <div className="mt-6 w-3/5 h-px bg-gray-200 mx-auto"></div>
             </div>
             
             <div className="text-center">
-              <div className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true }} className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
                 <i className="ri-map-pin-line text-[#0A1F44] text-7xl"></i>
-              </div>
-              <h3 className="text-xl font-bold text-[#0A1F44] mb-4">Local Execution</h3>
-              <p className="text-gray-600 leading-relaxed">Physical presence in Nigeria ensures smooth coordination, customs clearance, and delivery to your location.</p>
+              </motion.div>
+              <motion.h3 {...fadeUp} className="text-xl font-bold text-[#0A1F44] mb-4">Local Execution</motion.h3>
+              <motion.p {...fadeUp} className="text-gray-600 leading-relaxed">Physical presence in Nigeria ensures smooth coordination, customs clearance, and delivery to your location.</motion.p>
               <div className="mt-6 w-3/5 h-px bg-gray-200 mx-auto"></div>
             </div>
             
             <div className="text-center">
-              <div className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true }} className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
                 <i className="ri-hand-heart-line text-[#0A1F44] text-7xl"></i>
-              </div>
-              <h3 className="text-xl font-bold text-[#0A1F44] mb-4">High-Value Transactions</h3>
-              <p className="text-gray-600 leading-relaxed">Experience handling large-scale procurement for banks, industries, and government institutions.</p>
+              </motion.div>
+              <motion.h3 {...fadeUp} className="text-xl font-bold text-[#0A1F44] mb-4">High-Value Transactions</motion.h3>
+              <motion.p {...fadeUp} className="text-gray-600 leading-relaxed">Experience handling large-scale procurement for banks, industries, and government institutions.</motion.p>
               <div className="mt-6 w-3/5 h-px bg-gray-200 mx-auto"></div>
             </div>
             
             <div className="text-center">
-              <div className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true }} className="w-18 h-18 flex items-center justify-center mx-auto mb-6">
                 <i className="ri-file-shield-2-line text-[#0A1F44] text-7xl"></i>
-              </div>
-              <h3 className="text-xl font-bold text-[#0A1F44] mb-4">Compliance Driven</h3>
-              <p className="text-gray-600 leading-relaxed">Full transparency in operations with adherence to Nigerian and international trade regulations.</p>
+              </motion.div>
+              <motion.h3 {...fadeUp} className="text-xl font-bold text-[#0A1F44] mb-4">Compliance Driven</motion.h3>
+              <motion.p {...fadeUp} className="text-gray-600 leading-relaxed">Full transparency in operations with adherence to Nigerian and international trade regulations.</motion.p>
               <div className="mt-6 w-3/5 h-px bg-gray-200 mx-auto"></div>
             </div>
           </div>
@@ -401,13 +508,19 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#0A1F44] to-[#0A1F44]/90 relative overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-br from-[#0A1F44] to-[#0A1F44]/90 relative overflow-hidden"
+      >
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"></div>
         </div>
-        
-        <div className="max-w-5xl mx-auto px-6 lg:px-12 text-center relative z-10">
+
+        <motion.div {...fadeUp} className="max-w-5xl mx-auto px-6 lg:px-12 text-center relative z-10">
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Ready to Start Your<br />
             <span className="text-[#D4AF37]">Procurement Journey?</span>
@@ -438,8 +551,8 @@ export default function HomePage() {
               <span>No Obligation Quote</span>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Service Enquiry Modal */}
       {showModal && (
