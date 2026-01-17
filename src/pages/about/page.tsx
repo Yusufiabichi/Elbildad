@@ -364,8 +364,8 @@ export default function AboutPage() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <a href="https://readdy.ai/?ref=logo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
-              Powered by Readdy
+            <a href="https://yusufias-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
+              Developed by Yusufia Dev
             </a>
           </div>
         </div>

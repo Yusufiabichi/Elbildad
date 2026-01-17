@@ -60,7 +60,7 @@ export default function HomePage() {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formBody.toString()
+        // body: formBody.toString()
       });
 
       if (response.ok) {
@@ -769,6 +769,8 @@ const slideRight = {
         </div>
       )}
 
+      <BackToTop />
+
       {/* Footer */}
       <footer className="bg-[#0A1F44] text-white pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -834,8 +836,8 @@ const slideRight = {
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <a href="https://readdy.ai/?ref=logo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
-              Powered by Readdy
+            <a href="https://yusufias-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
+              Developed by Yusufia Dev
             </a>
           </div>
         </div>

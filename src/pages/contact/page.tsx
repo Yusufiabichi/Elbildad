@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BackToTop from '../../../components/BackToTop';
 
 export default function ContactPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -77,6 +78,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <BackToTop />
 
       {/* Contact Section */}
       <section className="py-24 bg-white">
@@ -106,7 +108,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-[#0A1F44] mb-2">Phone</h3>
-                    <p className="text-gray-600">+234 XXX XXX XXXX</p>
+                    <p className="text-gray-600">
+                      <a href="tel:+2347068538000">+234 706 853 8000</a>
+                    </p>
                   </div>
                 </div>
                 
@@ -321,8 +325,8 @@ export default function ContactPage() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <a href="https://readdy.ai/?ref=logo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
-              Powered by Readdy
+            <a href="https://yusufias-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] text-sm transition-colors whitespace-nowrap">
+              Developed by Yusufia Dev
             </a>
           </div>
         </div>
